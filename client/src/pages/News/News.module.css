@@ -1,0 +1,47 @@
+.top_container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.left_bottom {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .cardImage {
+    flex: 1; /* Takes up half the card */
+    overflow: hidden;
+  }
+  
+  .cardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+  }
+  
+  .cardText {
+    flex: 1; /* Takes up the remaining half of the card */
+    padding: 16px; /* Adjust padding as necessary */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the text vertically */
+  }
+
+  .news_content {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+  }
+
+  .card {
+    width: 400px;
+  }

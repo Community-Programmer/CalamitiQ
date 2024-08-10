@@ -13,6 +13,10 @@ import { useMutation } from "react-query";
 import { verifyUser } from "./http/authApi";
 import { useEffect } from "react";
 import { verify } from "./store/authSlice";
+import Weather from "./components/Weather/Weather";
+import News from "./pages/News/News";
+import DonationAid from "./pages/Donation/DonationAid";
+
 
 function App() {
 
@@ -37,6 +41,8 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path = "/add-disaster" element={<Disaster />} />
+          <Route path = "/add-news" element ={<News/>} />
+          <Route path = "/add-donation" element = {<DonationAid/>} />
         </Route>
       </Routes>
 
