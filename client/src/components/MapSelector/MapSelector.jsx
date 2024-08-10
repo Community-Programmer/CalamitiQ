@@ -77,19 +77,7 @@ const MapSelector = () => {
           </Marker>
         )}
       </MapContainer>
-      <div style={{ marginTop: '10px' }}>
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder="Search for a location"
-        />
-        <button onClick={handleSearch}>Search</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <h2>Selected Coordinates:</h2>
-        <p>Latitude: {position ? position.lat.toFixed(5) : 'N/A'}</p>
-        <p>Longitude: {position ? position.lng.toFixed(5) : 'N/A'}</p>
-      </div>
+      
     </div>
   );
 };
