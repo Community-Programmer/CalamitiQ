@@ -2,16 +2,28 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
-const Login = () => {
+const Signup= () => {
 
-  const [credentials, setcredentials] = useState({ email: "", password: "" });
+  const [credentials, setcredentials] = useState({
+    email: "",
+    password: "",
+    userDetails: { name: "" },
+  });
 
   const handleChange = (e) => {
-    setcredentials({ ...credentials, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "name") {
+      setcredentials({
+        ...credentials,
+        userDetails: { ...credentials.userDetails, name: value },
+      });
+    } else {
+      setcredentials({ ...credentials, [name]: value });
+    }
   };
 
 
@@ -21,12 +33,24 @@ const Login = () => {
         <div className="flex items-center justify-center py-12">
           <div className="mx-auto grid w-[350px] gap-6">
             <div className="grid gap-2 text-center">
-              <h1 className="text-3xl font-bold">Welcome Back</h1>
+              <h1 className="text-3xl font-bold">Connect with us</h1>
               <p className="text-balance text-muted-foreground">
-                Enter your email below to login to your account
+                Enter your details below to create your account
               </p>
             </div>
             <div className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="Name">Name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="John"
+                  value={credentials.userDetails.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -40,37 +64,40 @@ const Login = () => {
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <Link
-                    to="/forgot-password"
-                    className="ml-auto inline-block text-sm underline"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
+                <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
                   name="password"
                   type="password"
+                  placeholder="Password"
                   value={credentials.password}
                   onChange={handleChange}
                   required
                 />
               </div>
               <Button type="submit" className="w-full">
-                Login
+                Create account
               </Button>
               <Button variant="outline" className="w-full gap-3">
                 <FaGoogle />
-                Login with Google
+                Continue with Google
               </Button>
-            </div>
-            <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link to="#" className="underline">
-                Sign up
-              </Link>
+              <p className="text-balance text-muted-foreground ">
+                By clicking continue, you agree to our{" "}
+                <Link
+                  to="/forgot-password"
+                  className="ml-auto inline-block text-sm underline"
+                >
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link
+                  to="/forgot-password"
+                  className="ml-auto inline-block text-sm underline"
+                >
+                  Privacy Policy
+                </Link>
+              </p>
             </div>
           </div>
         </div>
@@ -88,4 +115,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
