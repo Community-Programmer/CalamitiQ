@@ -7,6 +7,7 @@ import authRouter from './auth/authRouter.js';
 import globalErrorHandler from './middlewares/globalErrorHandler.js';
 import disasterRouter from './disaster/disasterRouter.js';
 import cookieParser from 'cookie-parser';
+import chatBotRouter from './chatbot/chatBotRouter.js';
 
 config();
 
@@ -37,6 +38,7 @@ app.get("/", (req, res, next) => {
 
 app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/disaster',disasterRouter);
+app.use('/api/v1/chat',chatBotRouter);
 
 app.use(globalErrorHandler);
 
