@@ -28,7 +28,7 @@ const createUser = async (req, res, next) => {
   
      const newUser = await authModel.create({...req.body,password:hashedPassword});
   
-      const token = sign({ sub: newUser._id }, process.env.SECRET_KEY, {
+      const token = sign({ sub: newUser._id, role: newUser.userDetails.role }, process.env.SECRET_KEY, {
           expiresIn: "7d",
           algorithm: "HS256",
         });
