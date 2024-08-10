@@ -63,7 +63,7 @@ const createUser = async (req, res, next) => {
             return next(createHttpError(400, "Invalid credentials"));
           }
         
-          const token = sign({ sub: user._id }, process.env.SECRET_KEY, {
+          const token = sign({ sub: user._id, role: user.userDetails.role }, process.env.SECRET_KEY, {
             expiresIn: "7d",
             algorithm: "HS256",
           });

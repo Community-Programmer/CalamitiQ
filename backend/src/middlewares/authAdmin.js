@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 import pkg from 'jsonwebtoken';
-const { sign } = pkg;
+const { sign, verify } = pkg;
 
 
 const authenticateAdmin = (req, res, next) => {
@@ -11,7 +11,6 @@ const authenticateAdmin = (req, res, next) => {
 
   try {
     const decoded = verify(token, process.env.SECRET_KEY);
-
     if (decoded.role !== 'admin') {
       return next(createHttpError(403, 'Forbidden: You do not have the required role.'));
     }
@@ -19,6 +18,7 @@ const authenticateAdmin = (req, res, next) => {
     next();
     
   } catch (err) {
+    console.log(err)
     return next(createHttpError(401, 'Token is invalid or expired.'));
   }
 };

@@ -5,6 +5,8 @@ import http from "http";
 import { Server } from "socket.io";
 import authRouter from './auth/authRouter.js';
 import globalErrorHandler from './middlewares/globalErrorHandler.js';
+import disasterRouter from './disaster/disasterRouter.js';
+import cookieParser from 'cookie-parser';
 
 config();
 
@@ -19,6 +21,7 @@ const io = new Server(server, {
 });
 
 app.use(express.json());
+app.use(cookieParser())
 
 app.use(
     cors({
@@ -32,7 +35,8 @@ app.get("/", (req, res, next) => {
     res.json({ message: "Welcome to Disaster Management App Backend - Devloped By hackgeniuses" });
 });
 
-app.use('/api/v1/auth',authRouter)
+app.use('/api/v1/auth',authRouter);
+app.use('/api/v1/disaster',disasterRouter);
 
 app.use(globalErrorHandler);
 
