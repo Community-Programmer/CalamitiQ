@@ -8,7 +8,7 @@ const userDetailSchema = new Schema({
   },
   role: {
     type: String,
-    required: true,
+    default:'user'
   },
   profileUrl: {
     type: String,

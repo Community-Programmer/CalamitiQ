@@ -2,11 +2,11 @@ import createHttpError from "http-errors";
 import bcrypt from 'bcrypt'
 import authModel from "./authModel.js";
 import pkg from 'jsonwebtoken';
-const { sign } = pkg;
+const { sign, verify } = pkg;
 
 const createUser = async (req, res, next) => {
     const { email, password } = req.body;
-  
+    
     try {
       const user = await authModel.findOne({ email });
       if (user) {
@@ -17,7 +17,6 @@ const createUser = async (req, res, next) => {
         return next(error);
       }
     } catch (err) {
-        console.log(err)
       return next(createHttpError(500, "Error while getting user"));
     }
   
@@ -36,6 +35,7 @@ const createUser = async (req, res, next) => {
         res.status(201).json({ accessToken: token });
   
     } catch (err) {
+      console.log(err)
       return next(createHttpError(500, "Error while creating user"));
     }
   
@@ -78,4 +78,29 @@ const createUser = async (req, res, next) => {
   
   };
 
-export {createUser,loginUser}
+
+  const logoutUser = async (req, res, next)=>{
+    try {
+        res.cookie('token', '', { httpOnly: true, expires: new Date(0) });
+        res.status(200).json({ message: 'Logout successful.' });
+    } catch (error) {
+      return next(createHttpError(500, "Error while LogOut the user"));
+    }
+};
+
+
+const verifyUser = async (req, res, next)=>{
+  const {token}=req.cookies;
+  verify(token,process.env.SECRET_KEY ,{},async(err,data)=>{
+    if(data){
+        const user = await authModel.findOne({_id:data.sub});
+        res.json({data:data, userId:user?._id, userDetails:user?.userDetails })
+    }
+    if(err){
+        res.json({message:"Not Authorized!",ok:false})
+    }
+    })
+};
+
+
+export {createUser,loginUser, logoutUser , verifyUser}
