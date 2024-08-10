@@ -9,10 +9,7 @@ import { toastOptions } from "@/config/Toastify";
 import { toast } from "react-toastify";
 import { logoutUser } from "@/http/authApi";
 import { logout } from "@/store/authSlice";
-import React from "react";
-import { Link } from "react-router-dom";
 import { Menu} from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
