@@ -23,3 +23,39 @@
   border-radius: 50%;
 
 }
+
+.live {
+    display: flex;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    border: 1px solid green;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.5rem;
+    color: green;
+    box-shadow: 0 0 10px 1px #32a866;
+    max-width: fit-content;
+    font-size:13px;
+}
+  
+  .live {
+     span{
+      animation-duration: 500ms;
+      animation-name: blink;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      color: green;
+    }
+  }
+  
+  @-moz-keyframes blink {
+    from { opacity: 1;}
+    to { opacity: 0;}
+  }
+  @-webkit-keyframes blink {
+    from { opacity: 1;}
+    to { opacity: 0;}
+  }
+  @keyframes blink {
+    from { opacity: 1;}
+    to { opacity: 0;}
+  }
