@@ -75,6 +75,14 @@ const Navbar = () => {
                   weather forecast
                 </Link>
               </li>
+              <li>
+                <Link
+                  to='/disaster-map'
+                  className="text-gray-900 dark:text-white hover:underline"
+                >
+                  Disaster Map
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
