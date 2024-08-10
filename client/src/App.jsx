@@ -16,6 +16,7 @@ import { verify } from "./store/authSlice";
 import Weather from "./components/Weather/Weather";
 import News from "./pages/News/News";
 import DonationAid from "./pages/Donation/DonationAid";
+import PreparednessGuide from "./pages/Preparedness_Guide/PreparednessGuide";
 
 
 function App() {
@@ -43,6 +44,8 @@ function App() {
           <Route path = "/add-disaster" element={<Disaster />} />
           <Route path = "/add-news" element ={<News/>} />
           <Route path = "/add-donation" element = {<DonationAid/>} />
+          <Route path = "/preparedness-guide" element = {<PreparednessGuide/>} />
+
         </Route>
       </Routes>
 

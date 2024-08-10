@@ -70,6 +70,12 @@ const Navbar = () => {
             >
               Weather
             </Link>
+            <Link
+              to="/preparedness-guide"
+              className="text-foreground transition-colors hover:text-foreground"
+            >
+              Preparedness
+            </Link>
           </nav>
           <Sheet>
             <SheetTrigger asChild>
