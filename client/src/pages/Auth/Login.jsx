@@ -1,18 +1,46 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { useMutation } from "react-query";
+import { useDispatch } from "react-redux";
+import { loginUser } from "@/http/authApi";
+import { toast } from "react-toastify";
+import { toastOptions } from "@/config/Toastify";
+import { login } from "@/store/authSlice";
 
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [credentials, setcredentials] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     setcredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+
+  const loginmutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (res) => {
+      dispatch(login(res.data))
+      toast.success("Login Successful", toastOptions);
+      navigate('/')
+    },
+    onError: (error) => {
+      const errResponse = error.response?.data;
+      console.log(errResponse)
+      toast.error(errResponse.message, toastOptions);
+    },
+  });
+
+  const handleLogin = async() =>{
+    loginmutation.mutate(credentials);
+  }
 
 
   return (
@@ -58,7 +86,7 @@ const Login = () => {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" onClick={handleLogin}>
                 Login
               </Button>
               <Button variant="outline" className="w-full gap-3">

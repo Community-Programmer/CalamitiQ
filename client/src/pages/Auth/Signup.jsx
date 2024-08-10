@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import { signupuser } from "@/http/authApi";
+import { toastOptions } from "@/config/Toastify";
+import { toast } from "react-toastify";
 
 
 const Signup= () => {
+
+  const navigate = useNavigate();
 
   const [credentials, setcredentials] = useState({
     email: "",
@@ -26,6 +32,24 @@ const Signup= () => {
     }
   };
 
+
+  const signUpmutation = useMutation({
+    mutationFn: signupuser,
+    onSuccess: (res) => {
+      console.log(res.data);
+      toast.success("Signup Successful", toastOptions);
+      toast.info("Please login with your credentials",toastOptions)
+      navigate("/login");
+    },
+    onError: (error) => {
+      const errResponse = error.response?.data;
+      toast.error(errResponse.message, toastOptions);
+    },
+  });
+
+  const handleSignup = async () => {
+    signUpmutation.mutate(credentials);
+  };
 
   return (
     <>
@@ -75,7 +99,7 @@ const Signup= () => {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" onClick={handleSignup}>
                 Create account
               </Button>
               <Button variant="outline" className="w-full gap-3">

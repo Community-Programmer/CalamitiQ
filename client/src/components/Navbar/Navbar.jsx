@@ -1,7 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { LogOut } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
+import { useMutation } from "react-query";
+import { toastOptions } from "@/config/Toastify";
+import { toast } from "react-toastify";
+import { logoutUser } from "@/http/authApi";
+import { logout } from "@/store/authSlice";
 
 const Navbar = () => {
+
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+ 
+  const logoutmutation = useMutation({
+    mutationFn: logoutUser,
+    onSuccess: () => {
+      toast.success("Logout Successful", toastOptions);
+      dispatch(logout());
+      navigate("/");
+    },
+    onError: (error) => {
+      const errResponse = error.response?.data;
+      toast.error(errResponse.message, toastOptions);
+    },
+  });
+
+  const handleLogout = () => {
+    logoutmutation.mutate();
+  };
+
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -10,23 +41,54 @@ const Navbar = () => {
             CALAMITIQ
           </span>
 
-          <div className="flex items-center space-x-6 rtl:space-x-reverse">
-            <Link to='/login'>
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Login
-            </button>
-            </Link>
-            <Link to='/signup'>
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Signup
-            </button>
-            </Link>
+          <div className="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+            {!isAuthenticated ? (
+              <div className="ml-auto flex-1 sm:flex-initial">
+                <div className="flex gap-3 relative">
+                  <Link to="/signup">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="ml-auto gap-1.5 text-sm"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                  <Link to="/login">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="ml-auto gap-1.5 text-sm"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="flex gap-1">
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <Button variant="secondary">{user}</Button>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
         </div>
       </nav>
