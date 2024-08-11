@@ -12,6 +12,7 @@ const userDetailSchema = new Schema({
   },
   profileUrl: {
     type: String,
+    default: 'https://freesvg.org/img/abstract-user-flat-4.png'
   },
   dob: {
     type: Date,
