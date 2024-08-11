@@ -19,6 +19,8 @@ import PreparednessGuide from "./pages/Preparedness_Guide/PreparednessGuide";
 import Community from "./pages/community/Community";
 import RSSFeed from "./components/RssFeed/RSSFeed";
 import RssFeed24hr from "./pages/RssFeed_24hr/RssFeed24hr";
+import Weather from "./pages/Weather/Weather";
+
 
 
 function App() {
@@ -49,6 +51,7 @@ function App() {
           <Route path = "/preparedness-guide" element = {<PreparednessGuide/>} />
           <Route path="community" element={<Community />} />
           <Route path="rssfeed-24hr" element={<RssFeed24hr/>} />
+          <Route path="weather" element={<Weather/>} />
         </Route>
       </Routes>
 
