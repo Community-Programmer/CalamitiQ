@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
 
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, profileUrl } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
  
@@ -137,7 +137,7 @@ const Navbar = () => {
                 <DropdownMenuTrigger asChild>
                   <div className="flex gap-1">
                     <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarImage src={profileUrl} />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <Button variant="secondary">{user}</Button>
