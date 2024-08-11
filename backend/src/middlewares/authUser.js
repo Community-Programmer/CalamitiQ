@@ -11,10 +11,7 @@ const authenticateUser = (req, res, next) => {
 
   try {
     const decoded = verify(token, process.env.SECRET_KEY);
-
-    if (decoded.role !== 'user') {
-      return next(createHttpError(403, 'Forbidden: You do not have the required role.'));
-    }
+    
     req.userId = decoded.sub;
     next();
     
