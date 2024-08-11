@@ -31,7 +31,7 @@ const Home = () => {
           },
           headers: {
             "x-api-key":
-              "",
+              "0f0cce56df7e34124ac9bddbbdfffa2a46ad02d1199a8e1e295308fff87f49b3",
             "Content-type": "application/json",
           },
         });
