@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { verify } from "./store/authSlice";
 import News from "./pages/News/News";
 import DonationAid from "./pages/Donation/DonationAid";
+import PreparednessGuide from "./pages/Preparedness_Guide/PreparednessGuide";
 import Community from "./pages/community/Community";
 
 
@@ -43,6 +44,8 @@ function App() {
           <Route path = "/add-disaster" element={<Disaster />} />
           <Route path = "/add-news" element ={<News/>} />
           <Route path = "/add-donation" element = {<DonationAid/>} />
+          <Route path = "/preparedness-guide" element = {<PreparednessGuide/>} />
+
           <Route path="community" element={<Community />} />
         </Route>
       </Routes>
