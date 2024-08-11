@@ -83,10 +83,12 @@ const Home = () => {
               </p>
               <span className=" text-md font-semibold text-gray-500 dark:text-gray-400">Stay Informed. Get Educated. Connect Effortlessly.</span>
             </div>
+            <Link to="/disaster-map">
             <Button className="w-full gap-4">
-              <Link href="disaster-map">Disaster Map</Link>
+              Disaster Map
               <FaArrowRight />
             </Button>
+            </Link>
           </div>
         </div>
         <div className=" lg:block">

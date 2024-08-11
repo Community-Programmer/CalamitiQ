@@ -20,7 +20,7 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
-  const { isAuthenticated, user, profileUrl } = useSelector(
+  const { isAuthenticated, user, profileUrl, role } = useSelector(
     (state) => state.auth
   );
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Navbar = () => {
               CALAMITIQ
             </Link>
             <Link
-              to="#"
+              to="/news"
               className="text-foreground transition-colors hover:text-foreground"
             >
               News
@@ -87,6 +87,12 @@ const Navbar = () => {
             <Link to="/rssfeed-24hr" className="hover:text-foreground">
               Natural Disaster - Live feed
             </Link>
+            <Link to="/donation" className="hover:text-foreground">
+              Donation
+            </Link>
+            <Link to="/add-disaster" className="hover:text-foreground">
+              create alerts
+            </Link>
           </nav>
           <Sheet>
             <SheetTrigger asChild>
@@ -104,7 +110,7 @@ const Navbar = () => {
                 <Link to="/" className="hover:text-foreground">
                   CALAMITIQ
                 </Link>
-                <Link to="#" className="hover:text-foreground">
+                <Link to="/news" className="hover:text-foreground">
                   News
                 </Link>
                 <Link to="/disaster-map" className="hover:text-foreground">
@@ -118,6 +124,12 @@ const Navbar = () => {
                 </Link>
                 <Link to="/rssfeed-24hr" className="hover:text-foreground">
                   Natural Disaster - Live feed
+                </Link>
+                <Link to="/donation" className="hover:text-foreground">
+              Donation
+                </Link>
+                <Link to="/add-disaster" className="hover:text-foreground">
+                  create alerts
                 </Link>
               </nav>
             </SheetContent>
@@ -154,7 +166,7 @@ const Navbar = () => {
                       <AvatarImage src={profileUrl} />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
-                    <Button variant="secondary">{user}</Button>
+                    <Button variant="secondary">{user} - {role}</Button>
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">

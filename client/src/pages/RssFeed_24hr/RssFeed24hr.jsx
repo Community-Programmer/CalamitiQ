@@ -1,6 +1,7 @@
 import RSSFeed from "@/components/RssFeed/RSSFeed";
 
 const RssFeed24hr = () => {
+
   return (
     <>
       <div className="rss-feed mt-6 mb-3">

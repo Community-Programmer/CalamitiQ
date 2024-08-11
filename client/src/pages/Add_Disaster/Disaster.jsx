@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -37,12 +37,13 @@ import { useMutation } from "react-query";
 import { addDisaster } from "@/http/disasterApi";
 import { toastOptions } from "@/config/Toastify";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
-// Custom hook to update map view
+
 const MapViewUpdater = ({ position }) => {
   const map = useMap();
   if (position) {
-    map.setView([position.lat, position.lng], 13); // Adjust zoom level as needed
+    map.setView([position.lat, position.lng], 13); 
   }
   return null;
 };
@@ -96,6 +97,21 @@ const MapSelector = ({ setLatitude, setLongitude }) => {
       }
     }
   };
+
+  const navigate = useNavigate('');
+
+  const { role } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(()=>{
+
+    if(role!='admin'){
+      toast.error("You require admin role to create disaster alerts", toastOptions);
+      navigate('/')
+    }
+
+  },[role,navigate])
 
   return (
     <div style={{ height: "500px", width: "100%" }}>
