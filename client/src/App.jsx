@@ -44,8 +44,8 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path = "/add-disaster" element={<Disaster />} />
-          <Route path = "/add-news" element ={<News/>} />
-          <Route path = "/add-donation" element = {<DonationAid/>} />
+          <Route path = "/news" element ={<News/>} />
+          <Route path = "/donation" element = {<DonationAid/>} />
           <Route path = "/preparedness-guide" element = {<PreparednessGuide/>} />
           <Route path="community" element={<Community />} />
           <Route path="rssfeed-24hr" element={<RssFeed24hr/>} />
