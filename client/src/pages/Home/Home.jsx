@@ -70,18 +70,18 @@ const Home = () => {
     <>
       <div className="w-full lg:grid lg:min-h-[400px] lg:grid-cols-2 xl:min-h-[600px] ">
         <div className="flex items-center justify-center py-12">
-          <div className="mx-auto grid w-[350px] gap-6">
-            <div className="grid text-center gap-5">
-              <h1 className="text-4xl font-bold">
-                {" "}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit
-              </h1>
+          <div className="mx-auto grid w-[550px] gap-6">
+            <div className="grid gap-5">
+              <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">CALAMITIQ</span></h1>
+              <span className=" text-xl ms-2 font-semibold text-gray-500 dark:text-gray-400">Prepare. Respond. Recover.</span>
               <p className="text-balance text-muted-foreground">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint,
-                odit aliquid adipisci vero, voluptates et repellendus aspernatur
-                similique illo quis nesciunt, totam dolorem iusto rem facere
-                fuga itaque dolores delectus!
+                In an era of increasing natural disasters, CALAMITIQ provides
+                the essential tools for effective disaster preparedness and
+                response. Our platform delivers real-time alerts, educational
+                resources, and seamless communication to ensure you and your
+                community are always ready.
               </p>
+              <span className=" text-md font-semibold text-gray-500 dark:text-gray-400">Stay Informed. Get Educated. Connect Effortlessly.</span>
             </div>
             <Button className="w-full gap-4">
               <Link href="disaster-map">Disaster Map</Link>
@@ -96,7 +96,7 @@ const Home = () => {
               frameloop="demand"
               camera={{ position: [-4, 3, 6], fov: 45, near: 0.1, far: 300 }}
             >
-              <ambientLight intensity="2" />
+              <ambientLight intensity={3} />
               <OrbitControls enableZoom={false} autoRotate />
               <Suspense fallback={null}>
                 <Earth scale={2} />
@@ -123,31 +123,34 @@ const Home = () => {
       </div>
 
       {disasterInfo ? (
-        <div className="flex flex-wrap p-5"> 
-         {disasterInfo.map((disaster)=>(
-          <div key={disaster.event_id} className="bg-white shadow-lg rounded-lg p-6 max-w-md mx-auto my-4">
-                 <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                   {disaster.event_name}
-                 </h2>
-                 <p className="text-gray-600 mb-1">
-                   <strong>Type:</strong> {disaster.event_type}
-                 </p>
-                 <p className="text-gray-600 mb-1">
-                   <strong>Date:</strong>{" "}
-                   {new Date(disaster.date).toLocaleString()}
-                 </p>
-                 <p className="text-gray-600 mb-1">
-                   <strong>Location:</strong> Latitude {disaster.lat}, Longitude{" "}
-                   {disaster.lng}
-                 </p>
-               </div>
-         ))}
-
-
-      </div>
+        <div className="flex flex-wrap p-5">
+          {disasterInfo.map((disaster) => (
+            <div
+              key={disaster.event_id}
+              className="bg-white shadow-lg rounded-lg p-6 max-w-md mx-auto my-4"
+            >
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                {disaster.event_name}
+              </h2>
+              <p className="text-gray-600 mb-1">
+                <strong>Type:</strong> {disaster.event_type}
+              </p>
+              <p className="text-gray-600 mb-1">
+                <strong>Date:</strong>{" "}
+                {new Date(disaster.date).toLocaleString()}
+              </p>
+              <p className="text-gray-600 mb-1">
+                <strong>Location:</strong> Latitude {disaster.lat}, Longitude{" "}
+                {disaster.lng}
+              </p>
+            </div>
+          ))}
+        </div>
       ) : (
         <div className="noDisaster">
-          <p className="text-center mt-5">No recent disasters reported near your location.</p>
+          <p className="text-center mt-5">
+            No recent disasters reported near your location.
+          </p>
         </div>
       )}
 
