@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 import pkg from 'jsonwebtoken';
-const { sign } = pkg;
+const { sign, verify } = pkg;
 
 
 const authenticateUser = (req, res, next) => {
