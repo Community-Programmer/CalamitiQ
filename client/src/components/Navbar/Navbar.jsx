@@ -2,22 +2,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { LogOut } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { useMutation } from "react-query";
 import { toastOptions } from "@/config/Toastify";
 import { toast } from "react-toastify";
 import { logoutUser } from "@/http/authApi";
 import { logout } from "@/store/authSlice";
-import { Menu} from "lucide-react";
+import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
-
-  const { isAuthenticated, user, profileUrl } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, profileUrl } = useSelector(
+    (state) => state.auth
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
- 
+
   const logoutmutation = useMutation({
     mutationFn: logoutUser,
     onSuccess: () => {
@@ -37,7 +45,7 @@ const Navbar = () => {
 
   return (
     <>
-  <div className="flex w-full flex-col">
+      <div className="flex w-full flex-col">
         <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 justify-between">
           <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
             <Link
@@ -76,6 +84,9 @@ const Navbar = () => {
             >
               Preparedness
             </Link>
+            <Link to="/rssfeed-24hr" className="hover:text-foreground">
+              Natural Disaster - Live feed
+            </Link>
           </nav>
           <Sheet>
             <SheetTrigger asChild>
@@ -99,11 +110,14 @@ const Navbar = () => {
                 <Link to="/disaster-map" className="hover:text-foreground">
                   DisasterMap
                 </Link>
-                <Link to="#" className="hover:text-foreground">
+                <Link to="/community" className="hover:text-foreground">
                   Community
                 </Link>
                 <Link to="/weather" className="hover:text-foreground">
                   Weather
+                </Link>
+                <Link to="/rssfeed-24hr" className="hover:text-foreground">
+                  Natural Disaster - Live feed
                 </Link>
               </nav>
             </SheetContent>

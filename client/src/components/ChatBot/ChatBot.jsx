@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import ReactMarkdown from "react-markdown";
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
@@ -40,7 +41,7 @@ const ChatBot = () => {
             key={index}
             className={message.fromUser ? 'bg-blue-200 p-1.5 mb-1 rounded text-black' : 'bg-gray-100 p-1.5 mb-1 rounded text-black'}
           >
-            {message.text}
+           <ReactMarkdown>{message.text}</ReactMarkdown>
           </div>
         ))}
       </div>

@@ -59,3 +59,87 @@
     from { opacity: 1;}
     to { opacity: 0;}
   }
+
+
+
+  .rss-feed {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .rss-feed-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .rss-feed-error {
+    color: red;
+    text-align: center;
+    font-size: 1.2em;
+  }
+  
+  
+  .rss-feed-loading {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+  }
+  
+  
+  .rss-feed-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .rss-feed-item {
+    border: 1px solid #ddd;
+    padding: 15px; 
+    margin-bottom: 20px; 
+    border-radius: 8px;
+    background-color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out; 
+  }
+  
+  
+  .rss-feed-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  .rss-feed-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  
+  .rss-feed-link {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #007bff;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  
+  .rss-feed-link:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .rss-feed-description {
+    font-size: 1em;
+    color: #555;
+  }
+  
