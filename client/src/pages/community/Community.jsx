@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -141,7 +141,6 @@ const Community= () => {
               <div className="m-4 w-100">
                 <div
                   className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring flex flex-row items-center"
-                  x-chunk="dashboard-03-chunk-1"
                 >
                   <Input
                     id="message"
@@ -247,7 +246,7 @@ const Community= () => {
                   <p className="p-2 ">
                     1. Be respectful and considerate towards fellow community
                     members. <br />
-                    2. Keep posts relevant and focused on the community's
+                    2. Keep posts relevant and focused on the community&apos;s
                     purpose. <br />
                     3. Share valuable content that enriches discussions and
                     learning experiences.
@@ -266,7 +265,7 @@ const Community= () => {
                       <div className="flex justify-start h-30 flex-col gap-3 overflow-hidden">
                         <div className="flex gap-3">
                           {discussion.tags.map((tag) => (
-                            <Badge className="w-fit">{tag}</Badge>
+                            <Badge key={tag} className="w-fit">{tag}</Badge>
                           ))}
                         </div>
                         <div className="flex flex-row gap-5">
@@ -377,7 +376,6 @@ const Community= () => {
               <Separator className="my-4" />
               <div
                 className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
-                x-chunk="dashboard-03-chunk-1"
               >
                 <Label htmlFor="message" className="sr-only">
                   Message

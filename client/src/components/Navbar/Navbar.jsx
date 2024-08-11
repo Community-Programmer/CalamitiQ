@@ -59,7 +59,7 @@ const Navbar = () => {
               DisasterMap
             </Link>
             <Link
-              to="#"
+              to="/community"
               className="text-foreground transition-colors hover:text-foreground"
             >
               Community
